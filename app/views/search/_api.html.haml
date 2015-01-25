@@ -1,0 +1,8 @@
+- tweets.each do |tweet|
+	%tr
+		%td 
+			%img{:src => tweet[1].user.profile_image_url, :class=>"img-circle"}
+			%strong #{tweet[0]}
+		%td #{tweet[1].text}
+		%td #{tweet[1].created_at.strftime("%d-%m-%y")}
+		%td #{tweet[2]}

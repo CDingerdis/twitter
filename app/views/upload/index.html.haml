@@ -1,0 +1,12 @@
+- content_for(:body) do
+	.container
+		.col-sm-10
+			%h1 File Upload
+			%form{:method=>"post",:action => "/upload", :enctype => 'multipart/form-data'}   
+				%input{:type => "hidden",:name => "authenticity_token", :value => form_authenticity_token}
+				.form-group
+					%label{:for => "upload[dataFile]"} File:
+					%input{:type => "file", :name => "upload[dataFile]"}
+				.form-group
+					%input{:type => "submit", :value => "upload", :class => "btn btn-default"}
+			

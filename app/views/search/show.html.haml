@@ -1,0 +1,49 @@
+- content_for(:body) do
+	.col-sm-12
+		%h1 tweets
+		.col-sm-12
+			.col-sm-6
+				%form{:id => "search-form",:class=> "form-inline",data: {remote: true}}
+					%input{:type=>"text",:class=>"form-control",:name => "name", :placeholder => "name"}
+					%input{:type=>"text",:class=>"form-control",:name => "keyword", :placeholder => "keywords"}
+					.radio
+						%label
+							%input{:type=>"radio",:name=>"search",:value=>"all"}
+							All
+						%label
+							%input{:type=>"radio",:name=>"search",:value=>"recent"}
+							Recent
+					%input{:type => "submit",:class=>"form-control", :value => "Search", :class => "btn btn-primary"}
+			.col-sm-6
+				%form{:id => "csv-form",:class=> "form-inline",:enctype => 'multipart/form-data',data: {remote: true}} 
+					%label{:for => "upload[dataFile]"} CSV file:
+					%input{:class=>"form-control", :type => "file", :name => "upload[dataFile]"}
+					.radio
+						%label
+							%input{:type=>"radio",:name=>"search",:value=>"all"}
+							All
+						%label
+							%input{:type=>"radio",:name=>"search",:value=>"recent"}
+							Recent
+					%input{:class=>"form-control", :type => "submit", :value => "upload", :class => "btn btn-primary"}
+					
+						
+
+		%table{:class => "table table-striped"}
+			%thead
+				%tr
+					%th name
+					%th tweet
+					%th date
+					%th keywords
+			%tbody{:id => 'tweets'}
+				- tweets.each do |tweet|
+					%tr
+						%td 
+							%img{:src => tweet[1].user.profile_image_url, :class=>"img-circle"}
+							%strong #{tweet[0]}
+						%td #{tweet[1].text}
+						%td #{tweet[1].created_at.strftime("%d-%m-%y")}
+						%td #{tweet[2]}
+
+			
